@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>EasyRide — Hands-Free Transit Ticketing &amp; Real-Time Cabin Intelligence</title>
+  <meta name="description" content="EasyRide replaces door-validator bottlenecks with cryptographically signed BLE hands-free ticketing for passengers and real-time cabin occupancy &amp; compliance telemetry for transit operators." />
+  <meta name="theme-color" content="#050912" />
+  <meta name="referrer" content="no-referrer" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; frame-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none';" />
+  <link rel="icon" href="../assets/icon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="css/site.css" />
+</head>
+<body>
+
+  <!-- ================= STICKY NAVIGATION ================= -->
+  <header class="site-nav">
+    <div class="container nav-inner">
+      <a href="#top" class="brand">
+        <svg viewBox="0 0 32 32" width="30" height="30" aria-hidden="true">
+          <defs>
+            <linearGradient id="brand-g" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#4ade80"/><stop offset="1" stop-color="#22d3ee"/>
+            </linearGradient>
+          </defs>
+          <rect x="2" y="2" width="28" height="28" rx="8.5" fill="url(#brand-g)"/>
+          <path d="M9.5 21.5V12.8a3.2 3.2 0 0 1 3.2-3.2h3.4a3.2 3.2 0 0 1 3.2 3.2v8.7" fill="none" stroke="#04131c" stroke-width="2.3" stroke-linecap="round"/>
+          <path d="M9.5 16h9.8" stroke="#04131c" stroke-width="2.2" stroke-linecap="round"/>
+          <circle cx="12.2" cy="21.6" r="1.6" fill="#04131c"/><circle cx="16.6" cy="21.6" r="1.6" fill="#04131c"/>
+          <path d="M23.5 8.5a6.2 6.2 0 0 1 0 8.5" fill="none" stroke="#04131c" stroke-width="1.7" stroke-linecap="round" opacity=".6"/>
+        </svg>
+        <span>EasyRide</span>
+        <span class="brand-badge">Rīga Pilot Ready</span>
+      </a>
+
+      <nav class="nav-links" aria-label="Primary">
+        <a href="#problem">Why EasyRide</a>
+        <a href="#platform">What We Do</a>
+        <a href="#live-demo">Interactive Demo</a>
+        <a href="#architecture">Sensor &amp; Security</a>
+        <a href="#economics">Fleet ROI</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a class="btn btn-secondary btn-sm" href="../index.html" target="_blank" rel="noopener" id="nav-open-app">Launch Full App ↗</a>
+        <a class="btn btn-primary btn-sm" href="#pilot">Book a City Pilot</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ================= HERO SECTION ================= -->
+  <main id="top">
+    <section class="hero">
+      <div class="container">
+        <div class="hero-grid">
+          <div>
+            <span class="eyebrow">
+              <span class="pulse-dot"></span>
+              Built for Rīgas satiksme, Municipal Fleets &amp; Transit Investors
+            </span>
+            <h1>
+              Zero-Tap Boarding for Riders.<br />
+              <span class="grad-txt">Live Cabin Intelligence</span> for Operators.
+            </h1>
+            <p class="hero-lead">
+              EasyRide turns every bus, trolleybus, and tram into a hands-free boarding zone. Passengers keep their phone in their pocket while tickets register automatically over signed Bluetooth Low Energy—and drivers &amp; dispatchers gain real-time visibility into passenger load, ticket compliance, route progress, and cabin crowding.
+            </p>
+            <div class="hero-ctas">
+              <a class="btn btn-primary btn-lg" href="#live-demo">Try Live Passenger + Driver Demo ↓</a>
+              <a class="btn btn-secondary btn-lg" href="#economics">Calculate Fleet ROI</a>
+            </div>
+            <div class="hero-note">
+              <span>✓ €58 per-vehicle BLE retrofit</span>
+              <span>·</span>
+              <span>✓ 100% compatible with existing e-talons &amp; QR</span>
+              <span>·</span>
+              <span>✓ Offline-verifiable cryptographic tickets</span>
+            </div>
+          </div>
+
+          <!-- Live Telemetry Snapshot Visual -->
+          <div class="hero-card" aria-label="Live EasyRide Cabin Telemetry Snapshot">
+            <div class="hc-header">
+              <div class="hc-route-chip">
+                <span class="hc-route-num">22</span>
+                <span>Bus 22 · Abrenes iela → Lidosta RIX</span>
+              </div>
+              <span class="hc-live-tag">● LIVE CABIN TELEMETRY</span>
+            </div>
+
+            <div class="hc-flow">
+              <div class="hc-box">
+                <div class="hc-box-top">
+                  <span>1 · Passenger Phone (In Pocket)</span>
+                  <span style="color:var(--acc)">2.6 s BLE Dwell ✓</span>
+                </div>
+                <div class="hc-box-main">
+                  <div>
+                    <div style="font-weight:750;font-size:15.5px">90-Minute Rīga Ticket Auto-Registered</div>
+                    <div style="font-size:12.5px;color:var(--txt2)">Verified <code style="color:var(--acc2)">ER-BEACON/1</code> · HMAC-SHA256 + GPS speed match</div>
+                  </div>
+                  <span style="font-family:var(--mono);font-weight:800;color:var(--acc);font-size:15px">€0.00 transfer</span>
+                </div>
+              </div>
+
+              <div class="hc-bridge">
+                <span>⇅ Instant Cabin Sync (APC Door Sensors + 3-Zone BLE) ⇅</span>
+              </div>
+
+              <div class="hc-box" style="border-color:rgba(56,189,248,0.35)">
+                <div class="hc-box-top">
+                  <span>2 · Bus Driver &amp; Dispatch Console</span>
+                  <span style="color:var(--amber)">68% Full · Standing Room</span>
+                </div>
+                <div class="hc-box-main">
+                  <div>
+                    <span class="hc-big">61</span>
+                    <span style="color:var(--txt2);font-size:13.5px"> / 90 on board</span>
+                  </div>
+                  <div style="text-align:right">
+                    <span class="hc-big" style="color:var(--acc)">60</span>
+                    <span style="color:var(--txt2);font-size:13.5px"> / 61 tickets registered (98%)</span>
+                  </div>
+                </div>
+                <div class="hc-meter" aria-hidden="true"><i></i></div>
+                <div style="display:flex;justify-content:space-between;font-size:11.5px;color:var(--txt2);margin-top:7px">
+                  <span>Front 74% · Mid 71% · Rear 59%</span>
+                  <span>Next: Uzvaras parks (1 min · 540 m)</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4 Key Investor / Operator Metrics -->
+        <div class="kpi-strip">
+          <div class="kpi-card">
+            <div class="kpi-val"><span>&lt; 2.8</span> sec</div>
+            <div class="kpi-lbl">Hands-free ticket registration in pocket—zero queuing at door validators</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-val"><span>99%</span> lower</div>
+            <div class="kpi-lbl">Per-bus hardware CAPEX (€58 BLE kit vs. €8,500+ proprietary optical validators)</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-val"><span>100%</span></div>
+            <div class="kpi-lbl">Automatic re-registration on 90-min &amp; pass transfers across Rīga lines</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-val"><span>3-Zone</span></div>
+            <div class="kpi-lbl">Live cabin crowding &amp; fare-compliance feed for drivers, dispatch, and waiting riders</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SECTION 1: THE PROBLEM ================= -->
+    <section class="sec" id="problem">
+      <div class="container">
+        <div class="sec-head">
+          <span class="eyebrow">The Transit Bottleneck</span>
+          <h2>Why Tap-and-Scan Ticketing Costs Cities Millions Every Year</h2>
+          <p>
+            Public transport operators face a painful trade-off: enforce strict front-door validation and slow down every route, or allow all-door boarding and lose millions in unvalidated rides and missing transfer data.
+          </p>
+        </div>
+
+        <div class="grid-3">
+          <article class="feature-card">
+            <div class="fc-ico warn">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 8v5l3 2"/><circle cx="12" cy="12" r="9"/></svg>
+            </div>
+            <h3>1. The “Forgotten Transfer” Leak</h3>
+            <p>
+              In Rīga, 90-minute tickets and passes require re-registration every time a rider switches vehicles. With winter gloves, bags, or crowded doors, paying commuters skip tapping—turning honest riders into technical fare evaders and distorting route-level subsidy allocation.
+            </p>
+            <div class="fc-stat">4–9% unrecorded boardings on multi-leg trips</div>
+          </article>
+
+          <article class="feature-card">
+            <div class="fc-ico blue">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12h16M13 5l7 7-7 7"/></svg>
+            </div>
+            <h3>2. Door Queues Cause Bus Bunching</h3>
+            <p>
+              Scanning QR codes on dim phone screens or hunting for plastic cards adds 2.5–4 seconds per passenger at major stops like Centrālā stacija. Multiply that across 18 stops and a single delayed bus triggers platoon bunching across the corridor.
+            </p>
+            <div class="fc-stat">+14–22% peak-hour stop dwell overhead</div>
+          </article>
+
+          <article class="feature-card">
+            <div class="fc-ico">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M3 11h18"/></svg>
+            </div>
+            <h3>3. Blind Cabins &amp; Driver Friction</h3>
+            <p>
+              Drivers shouldn’t have to act as ticket police—yet today neither drivers, dispatchers, nor waiting passengers know how many people are actually on board, how many registered a valid ticket, or whether the rear cabin still has room.
+            </p>
+            <div class="fc-stat">Zero real-time compliance visibility today</div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SECTION 2: WHAT WE DO (DUAL PLATFORM) ================= -->
+    <section class="sec" id="platform">
+      <div class="container">
+        <div class="sec-head">
+          <span class="eyebrow cyan">What EasyRide Does</span>
+          <h2>One Low-Cost Sensor Layer. Two Connected Experiences.</h2>
+          <p>
+            EasyRide connects the passenger’s smartphone and the driver’s cabin display through three tiny onboard Bluetooth Low Energy beacons—delivering frictionless rides for commuters and live operational telemetry for the transit agency.
+          </p>
+        </div>
+
+        <div class="dual-grid">
+          <!-- Passenger Side -->
+          <div class="role-panel">
+            <span class="eyebrow">For Riders · Passenger App</span>
+            <h3>Walk On. Ride. Walk Off.</h3>
+            <p>
+              Everything commuters expect from a modern transit app—timetables, live vehicle map, and instant ticket store—upgraded with true hands-free boarding.
+            </p>
+            <ul class="check-list">
+              <li>
+                <span class="chk">✓</span>
+                <span><b>Automatic Pocket Registration:</b> Detects the vehicle’s signed BLE broadcast, verifies physical boarding via 2.5 s dwell + GPS co-movement, and registers the trip with zero taps.</span>
+              </li>
+              <li>
+                <span class="chk">✓</span>
+                <span><b>Zero-Overcharge Fare Waterfall:</b> Automatically re-registers an active 90-minute or period pass for €0.00 first, activates a pre-bought ticket second, or auto-buys from wallet if enabled.</span>
+              </li>
+              <li>
+                <span class="chk">✓</span>
+                <span><b>Live Crowding Before the Bus Arrives:</b> Shows waiting riders whether incoming Bus 22 or Tram 1 has <em>Plenty of seats</em>, <em>Standing room</em>, or is <em>Crowded</em>.</span>
+              </li>
+              <li>
+                <span class="chk">✓</span>
+                <span><b>Offline Cryptographic Ticket QR:</b> Generates an HMAC-signed <code style="color:var(--acc)">ER1.</code> token with full boarding evidence for instant offline inspection.</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Driver & Operator Side -->
+          <div class="role-panel driver-side">
+            <span class="eyebrow cyan">For Operators · Bus Driver Cabin Console</span>
+            <h3>Complete Cabin Situational Awareness</h3>
+            <p>
+              Designed for glanceable, zero-distraction operation on existing cab MDT tablets—giving drivers and central dispatch live visibility into every trip.
+            </p>
+            <ul class="check-list">
+              <li>
+                <span class="chk">✓</span>
+                <span><b>Live Passenger Load (Seated + Standing):</b> Fuses infrared door APC counts with active EasyRide BLE sessions against exact vehicle capacity (e.g., Solaris Urbino 18 · 90 pax).</span>
+              </li>
+              <li>
+                <span class="chk">✓</span>
+                <span><b>Registered Tickets vs. Riders on Board:</b> Splits EasyRide BLE auto-registrations, legacy card/QR taps, verifying phones, and unregistered boardings in real time.</span>
+              </li>
+              <li>
+                <span class="chk">✓</span>
+                <span><b>Live Route Map &amp; Next-Stop HUD:</b> Displays our bus position, dashed completed leg vs. glowing upcoming route, next-stop distance/ETA, and schedule adherence.</span>
+              </li>
+              <li>
+                <span class="chk">✓</span>
+                <span><b>Front / Mid / Rear Crowding Zones:</b> Pinpoints front-door bottlenecks and broadcasts accurate occupancy tiers directly to passengers down the line.</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SECTION 3: INTERACTIVE LIVE DEMO STUDIO ================= -->
+    <section class="sec" id="live-demo">
+      <div class="container">
+        <div class="sec-head">
+          <span class="eyebrow">Try It Live Right Now</span>
+          <h2>Interactive Passenger + Bus Driver Demo Studio</h2>
+          <p>
+            Below is the working EasyRide Rīga fleet simulation—not a video. Switch between <b>Split-Screen Pitch View</b>, the <b>Bus Driver Console</b>, or the <b>Passenger App</b>, or hit <b>⚡ Auto-Demo</b> to watch a hands-free boarding sync from pocket to driver cockpit in real time.
+          </p>
+        </div>
+
+        <div class="demo-studio">
+          <div class="studio-toolbar">
+            <div class="mode-tabs" role="tablist" aria-label="Demo view mode">
+              <button type="button" class="mode-tab active" data-mode="split">Split Pitch View (Passenger + Driver)</button>
+              <button type="button" class="mode-tab" data-mode="driver">Bus Driver Console Only</button>
+              <button type="button" class="mode-tab" data-mode="passenger">Passenger App Only</button>
+            </div>
+
+            <div class="studio-actions">
+              <button type="button" class="btn btn-primary btn-sm" id="btn-auto-board">⚡ Auto-Demo: Board Bus 22 Live</button>
+              <button type="button" class="btn btn-secondary btn-sm" id="btn-sim-stop">+3 Stop Boarding (Driver)</button>
+              <a class="btn btn-secondary btn-sm" href="../index.html#/driver" target="_blank" rel="noopener" id="btn-full-driver">Full Driver Screen ↗</a>
+              <a class="btn btn-secondary btn-sm" href="../index.html#/start" target="_blank" rel="noopener" id="btn-full-app">Full App + Sensor Console ↗</a>
+            </div>
+          </div>
+
+          <div class="walkthrough-bar">
+            <div>
+              <b>15-Second Investor Walkthrough:</b> Click <b>⚡ Auto-Demo: Board Bus 22 Live</b> above (or board any vehicle on the left) and watch your <code style="color:var(--acc)">YOU</code> ticket appear automatically in the Bus Driver’s cabin feed on the right.
+            </div>
+            <div class="wt-status" id="wt-status">Ready · 26+ simulated Rīga vehicles running live</div>
+          </div>
+
+          <div class="frames-stage" id="frames-stage">
+            <!-- Left: Passenger Smartphone -->
+            <div class="device-shell" id="shell-passenger">
+              <div class="device-top">
+                <span>PASSENGER SMARTPHONE</span>
+                <span class="device-pill"></span>
+                <span style="color:var(--acc)">BLE Armed</span>
+              </div>
+              <iframe
+                id="frame-passenger"
+                class="device-screen"
+                title="EasyRide Passenger App Live Demo"
+                loading="eager"
+              ></iframe>
+            </div>
+
+            <!-- Right: Bus Driver Cabin Console -->
+            <div class="device-shell cabin-tablet" id="shell-driver">
+              <div class="device-top">
+                <span style="color:var(--blue)">BUS DRIVER CABIN CONSOLE</span>
+                <span class="device-pill"></span>
+                <span style="color:var(--acc2)">APC + BLE Live</span>
+              </div>
+              <iframe
+                id="frame-driver"
+                class="device-screen"
+                title="EasyRide Bus Driver Cabin Console Live Demo"
+                loading="eager"
+              ></iframe>
+            </div>
+          </div>
+
+          <!-- Scannable Phone QR Strip -->
+          <div class="qr-callout">
+            <div class="qr-left">
+              <img class="qr-thumb" id="qr-img" src="share/qr-scan.png" alt="QR code to open EasyRide demo on mobile" />
+              <div>
+                <div style="font-weight:800;font-size:16.5px;margin-bottom:4px">Test on Your Own Smartphone</div>
+                <div style="color:var(--txt2);font-size:14px;margin-bottom:6px">
+                  Scan with your phone camera to open the self-contained mobile build—choose <b>I’m taking public transport</b> or <b>I’m the bus driver</b> right at launch.
+                </div>
+                <a class="qr-url" href="https://litter.catbox.moe/vzpmox.html" target="_blank" rel="noopener">https://litter.catbox.moe/vzpmox.html</a>
+              </div>
+            </div>
+            <div style="display:flex;gap:10px;flex-wrap:wrap">
+              <a class="btn btn-secondary btn-sm" href="https://litter.catbox.moe/vzpmox.html" target="_blank" rel="noopener">Open Public Mobile Link ↗</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SECTION 4: SENSOR & SECURITY ARCHITECTURE ================= -->
+    <section class="sec" id="architecture">
+      <div class="container">
+        <div class="sec-head">
+          <span class="eyebrow cyan">Transit-Grade Engineering</span>
+          <h2>How EasyRide Guarantees Accuracy, Privacy &amp; Fraud Resistance</h2>
+          <p>
+            Built around real transit authority requirements: zero false charges for pedestrians waiting at shelters, cryptographic protection against beacon spoofing, and full offline ticket verification.
+          </p>
+        </div>
+
+        <div class="arch-wrap">
+          <div class="arch-steps" role="tablist" aria-label="Architecture stages">
+            <button type="button" class="arch-btn active" data-arch="beacons">
+              <div class="step-num">01 · ONBOARD HARDWARE</div>
+              <h4>3-Zone BLE Cabin Beacons (€58/bus)</h4>
+              <p>15-minute ceiling retrofit—no door turnstiles or proprietary cellular validators required.</p>
+            </button>
+            <button type="button" class="arch-btn" data-arch="filter">
+              <div class="step-num">02 · SPATIAL VERIFICATION</div>
+              <h4>Inside-Cabin vs. Bus-Shelter Filtering</h4>
+              <p>Multi-beacon RSSI gradient + 2.5 s dwell + GPS velocity match eliminates false boardings.</p>
+            </button>
+            <button type="button" class="arch-btn" data-arch="security">
+              <div class="step-num">03 · ANTI-FRAUD CRYPTOGRAPHY</div>
+              <h4>HMAC-SHA256 Signed Rolling Frames</h4>
+              <p>1 Hz monotonic counters and provisioned unit keys block cloned or replayed beacons.</p>
+            </button>
+            <button type="button" class="arch-btn" data-arch="offline">
+              <div class="step-num">04 · INSPECTION &amp; COEXISTENCE</div>
+              <h4>Offline Inspector Scan &amp; Legacy Coexistence</h4>
+              <p>Sub-50 ms offline QR verification alongside existing e-talons and paper QR tickets.</p>
+            </button>
+          </div>
+
+          <div class="arch-detail" id="arch-detail" aria-live="polite"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SECTION 5: FLEET ROI & PILOT CALCULATOR ================= -->
+    <section class="sec" id="economics">
+      <div class="container">
+        <div class="sec-head">
+          <span class="eyebrow">Unit Economics &amp; Operator ROI</span>
+          <h2>Hardware Payback Measured in Days—Not Decades</h2>
+          <p>
+            Legacy fare-collection upgrades lock municipalities into 10-year, multi-million-euro hardware contracts. Model how EasyRide performs on a single Rīga corridor pilot or across an entire municipal fleet.
+          </p>
+        </div>
+
+        <div class="roi-box">
+          <div>
+            <div style="font-size:12px;font-weight:750;text-transform:uppercase;letter-spacing:.07em;color:var(--txt3);margin-bottom:10px">
+              Quick Scenarios
+            </div>
+            <div class="preset-row">
+              <button type="button" class="preset-chip active" data-fleet="30" data-boardings="720" data-recovery="4.5">30-Bus Corridor Pilot (Line 22)</button>
+              <button type="button" class="preset-chip" data-fleet="420" data-boardings="680" data-recovery="4.5">420 Rīgas satiksme Buses</button>
+              <button type="button" class="preset-chip" data-fleet="850" data-boardings="740" data-recovery="5.0">850 Full Fleet (Bus + Trolley + Tram)</button>
+            </div>
+
+            <div class="slider-group">
+              <div class="slider-head">
+                <span>Equipped Fleet Size</span>
+                <b id="lbl-fleet">30 vehicles</b>
+              </div>
+              <input type="range" id="roi-fleet" min="10" max="1000" step="10" value="30" />
+            </div>
+
+            <div class="slider-group">
+              <div class="slider-head">
+                <span>Avg. Daily Boardings per Vehicle</span>
+                <b id="lbl-boardings">720 / day</b>
+              </div>
+              <input type="range" id="roi-boardings" min="250" max="1400" step="10" value="720" />
+            </div>
+
+            <div class="slider-group" style="margin-bottom:0">
+              <div class="slider-head">
+                <span>Recovered Unvalidated / Friction Rides</span>
+                <b id="lbl-recovery">4.5%</b>
+              </div>
+              <input type="range" id="roi-recovery" min="1.5" max="10" step="0.5" value="4.5" />
+            </div>
+          </div>
+
+          <div class="roi-results">
+            <div class="roi-metric">
+              <div class="rm-k">Total Beacon Hardware CAPEX</div>
+              <div class="rm-v" id="out-capex">€1,740</div>
+              <div class="rm-s" id="out-capex-sub">Saves €253,260 vs. legacy door validators</div>
+            </div>
+            <div class="roi-metric highlight">
+              <div class="rm-k">Est. Recovered Fare Revenue</div>
+              <div class="rm-v" id="out-rev">€380,256/yr</div>
+              <div class="rm-s" id="out-rev-sub">~972 recovered rides/day</div>
+            </div>
+            <div class="roi-metric highlight">
+              <div class="rm-k">Hardware Payback Period</div>
+              <div class="rm-v" id="out-payback">2 days</div>
+              <div class="rm-s">At €58/bus 3-beacon cabin kit</div>
+            </div>
+            <div class="roi-metric">
+              <div class="rm-k">Stop Dwell Time Saved</div>
+              <div class="rm-v" id="out-dwell">7.0 hrs/day</div>
+              <div class="rm-s">At 45% hands-free share (2.6 s/boarding)</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SECTION 6: 90-DAY CITY PILOT ROADMAP ================= -->
+    <section class="sec">
+      <div class="container">
+        <div class="sec-head">
+          <span class="eyebrow cyan">Low-Risk Deployment</span>
+          <h2>From Depot Bench Test to Live Corridor in 90 Days</h2>
+          <p>
+            Zero bus Immobilization, zero cutting into CAN-bus wiring, and zero disruption to existing fare validators.
+          </p>
+        </div>
+
+        <div class="roadmap-grid">
+          <div class="phase-card">
+            <div class="phase-tag">WEEKS 1–2 · PHASE 01</div>
+            <h3>5-Bus Calibration on Route 22</h3>
+            <p>
+              Adhesive/bracket mount of 3 BLE beacons per bus during overnight depot cleaning. Tune RSSI cabin thresholds across 12 m and 18 m articulated Solaris buses on the Airport–Abrenes iela corridor.
+            </p>
+          </div>
+          <div class="phase-card">
+            <div class="phase-tag">WEEKS 3–6 · PHASE 02</div>
+            <h3>30-Bus Live Rider &amp; Driver Pilot</h3>
+            <p>
+              Enable hands-free boarding for opt-in commuter cohort and activate the EasyRide Driver Cabin Console on cab tablets. Measure boarding speed, transfer re-registrations, and APC vs. BLE accuracy.
+            </p>
+          </div>
+          <div class="phase-card">
+            <div class="phase-tag">WEEKS 7–12 · PHASE 03</div>
+            <h3>GTFS-RT &amp; Fare Ledger Integration</h3>
+            <p>
+              Publish live 3-zone crowding feeds into municipal GTFS-RT OccupancyStatus, connect settlement APIs to the operator clearinghouse, and deliver full network rollout audit.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SECTION 7: OPERATOR & INVESTOR FAQ ================= -->
+    <section class="sec" id="faq">
+      <div class="container">
+        <div class="sec-head">
+          <span class="eyebrow">Key Questions Answered</span>
+          <h2>Operator, Technical &amp; Regulatory FAQ</h2>
+        </div>
+
+        <div class="faq-list">
+          <details class="faq-item" open>
+            <summary>Does hands-free boarding work when the passenger’s phone is locked in their pocket?</summary>
+            <p>
+              Yes in production native apps: while our browser-based interactive demo simulates the BLE radio so you can test it on any device today, the production iOS and Android apps use OS-level hardware beacon wakeups (<code style="color:var(--acc2)">CoreLocation</code> region monitoring on iOS and <code style="color:var(--acc2)">PendingIntent</code> BLE scan filters on Android) to wake EasyRide in the background for ~3 seconds upon entering a vehicle cabin—with &lt; 1% daily battery impact.
+            </p>
+          </details>
+          <details class="faq-item">
+            <summary>What happens with tourists, seniors, or riders using plastic e-talons?</summary>
+            <p>
+              100% coexistence. Existing contactless card validators and printed QR codes remain active. On the Bus Driver Cabin Console, infrared door counters (APC) measure total physical riders while subtracting both EasyRide BLE registrations and legacy validator taps—giving operators accurate compliance and crowding metrics across <em>all</em> passengers from day one.
+            </p>
+          </details>
+          <details class="faq-item">
+            <summary>Are bus drivers expected to confront unregistered passengers?</summary>
+            <p>
+              Never. EasyRide is explicitly designed for non-confrontational operations: drivers keep eyes on the road while cabin compliance data automatically triggers a polite multilingual cabin speaker chime when needed and routes mobile fare-inspection teams to the exact routes and hours where evasion actually occurs.
+            </p>
+          </details>
+          <details class="faq-item">
+            <summary>How is passenger GDPR privacy protected?</summary>
+            <p>
+              Beacons are transmit-only (one-way broadcast from ceiling to phone)—the bus never scans passenger MAC addresses or tracks bystanders on the street. Location and BLE checks run strictly on the rider’s handset; the operator backend receives only the valid ticket registration event (route, stop, timestamp) required for fare accounting.
+            </p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SECTION 8: BOOK A PILOT / CONTACT ================= -->
+    <section class="sec" id="pilot">
+      <div class="container">
+        <div class="contact-grid">
+          <div>
+            <span class="eyebrow">Partner With EasyRide</span>
+            <h2 style="font-size:clamp(28px,3.2vw,40px);line-height:1.14;margin:14px 0 14px">
+              Bring Zero-Tap Boarding &amp; Live Cabin Telemetry to Your Fleet
+            </h2>
+            <p style="color:var(--txt2);font-size:16px;line-height:1.62;margin:0 0 22px">
+              We are preparing corridor pilots in Rīga and partnering with Baltic &amp; European public transit operators, mobility investors, and fleet hardware integrators.
+            </p>
+
+            <ul class="check-list" style="margin-bottom:26px">
+              <li><span class="chk">✓</span><span><b>For Transit Agencies &amp; Cities:</b> Turnkey 30-vehicle 90-day corridor pilot with hardware, rider app, and driver cabin telemetry included.</span></li>
+              <li><span class="chk">✓</span><span><b>For Investors:</b> Full technical architecture memo, unit-economics model, and live product walkthrough.</span></li>
+              <li><span class="chk">✓</span><span><b>Live Demo Access Anytime:</b> Share the embedded demo or mobile QR with your technical &amp; operations teams.</span></li>
+            </ul>
+          </div>
+
+          <form class="pilot-form" id="pilot-form">
+            <h3 style="margin:0 0 6px;font-size:20px">Request a Pilot Brief or Investor Deck</h3>
+            <p style="margin:0 0 18px;font-size:13.5px;color:var(--txt2)">
+              Generate a tailored pilot &amp; partnership brief to send or share with your team.
+            </p>
+
+            <div class="field-row">
+              <div class="field">
+                <label for="f-role">I represent a…</label>
+                <select id="f-role">
+                  <option value="Transit Operator / Municipality">Transit Operator / Municipality</option>
+                  <option value="Venture / Mobility Investor">Venture / Mobility Investor</option>
+                  <option value="Fleet Hardware / AVL Partner">Fleet Hardware / AVL Partner</option>
+                  <option value="Research / Press">Research / Press</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="f-scope">Target Scope</label>
+                <select id="f-scope">
+                  <option value="30-Bus Corridor Pilot (90 Days)">30-Bus Corridor Pilot (90 Days)</option>
+                  <option value="Seed / Pre-Seed Investment Deck">Seed / Pre-Seed Investment Deck</option>
+                  <option value="Full Municipal Fleet Assessment">Full Municipal Fleet Assessment</option>
+                  <option value="Technical Architecture Deep-Dive">Technical Architecture Deep-Dive</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="field-row">
+              <div class="field">
+                <label for="f-org">Organization / City</label>
+                <input id="f-org" type="text" placeholder="e.g. Rīgas satiksme / Baltic Mobility Fund" required />
+              </div>
+              <div class="field">
+                <label for="f-email">Work Email</label>
+                <input id="f-email" type="email" placeholder="name@organization.eu" required />
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="f-notes">Notes or Fleet Questions (optional)</label>
+              <textarea id="f-notes" rows="3" placeholder="Tell us about your fleet size, corridor, or timeline…"></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary" style="width:100%">Generate Pilot Brief &amp; Contact Link →</button>
+
+            <div id="brief-output" class="brief-output" hidden></div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div style="display:flex;align-items:center;gap:10px">
+        <strong style="color:var(--txt)">EasyRide</strong>
+        <span>·</span>
+        <span>Hands-Free Public Transport Ticketing &amp; Cabin Telemetry · Rīga, Latvia</span>
+      </div>
+      <div style="display:flex;gap:18px;flex-wrap:wrap">
+        <a href="#live-demo">Interactive Demo</a>
+        <a href="../index.html#/driver" target="_blank" rel="noopener">Driver Console</a>
+        <a href="../index.html#/start" target="_blank" rel="noopener">Passenger App</a>
+        <a href="https://litter.catbox.moe/vzpmox.html" target="_blank" rel="noopener">Mobile Demo Link</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/site.js"></script>
+</body>
+</html>

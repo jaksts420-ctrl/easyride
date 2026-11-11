@@ -1,0 +1,22 @@
+{
+  "name": "EasyRide — Riga public transport, hands-free",
+  "short_name": "EasyRide",
+  "description": "Timetables, live vehicles, hands-free ticket registration and bus driver cabin console for Riga public transport. Demonstration build with simulated sensors and payments.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#070c16",
+  "theme_color": "#0b1220",
+  "lang": "en",
+  "categories": ["travel", "navigation", "utilities"],
+  "icons": [
+    { "src": "assets/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" },
+    { "src": "assets/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "maskable" }
+  ],
+  "shortcuts": [
+    { "name": "Live map", "url": "./#/map" },
+    { "name": "Buy a ticket", "url": "./#/tickets" },
+    { "name": "Inspector mode", "url": "./#/validator" }
+  ]
+}
